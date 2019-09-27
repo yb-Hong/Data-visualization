@@ -23,41 +23,9 @@ function drawChart() {
         ['커피점/카페', 212, 145, 144, 213, 243],
         ['일식/수산물', 275, 90, 187, 385, 404],
         ]);
-   var options = {
-      title: '포항시',
-          titleTextStyle: {
-            color: 'black',
-            fontSize: 30,
-            fontName: 'Verdana'
-          },
-      colors: ['silver', 'gray', 'Gold', 'brown', 'black'],
-      isStacked: true,
-hAxis: {
-            title: '점포 수',
-            titleTextStyle: {
-              fontSize: 20,
-              italic: false
-            },
-          },
-	
-   
-vAxis: {
-            title: '음식 업종',
-            titleTextStyle: {
-              fontSize: 20,
-              italic: false
-            },
-baseline: 0,
-            gridlines: {
-              count: 5
-            },
-            minValue: 0,
-            maxValue: 1700
-           }	  
-   };
 
-   var options2 = {
-          title: '포항시',
+var options2 = {
+          title: '포항시 음식 업종별 + 운영년수 현황',
           titleTextStyle: {
             color: 'black',
             fontSize: 30,
@@ -118,10 +86,44 @@ var view = new google.visualization.DataView(data);
                          type: "string",
                          role: "annotation" },]);
 
+   var options = {
+      title: '포항시 음식 업종별 현황',
+          titleTextStyle: {
+            color: 'black',
+            fontSize: 30,
+            fontName: 'Verdana'
+          },
+      colors: ['silver', 'gray', 'Gold', 'brown', 'black'],
+      isStacked: 'true',
+hAxis: {
+            title: '점포 수',
+            titleTextStyle: {
+              fontSize: 20,
+              italic: false
+            },
+          },
+	
+   
+vAxis: {
+            title: '음식 업종',
+            titleTextStyle: {
+              fontSize: 20,
+              italic: false
+            },
+baseline: 0,
+            gridlines: {
+              count: 5
+            },
+            minValue: 0,
+            maxValue: 1700
+           }	  
+   };
+
+
    // Instantiate and draw the chart.
-   var chart = new google.visualization.BarChart(document.getElementById('container'));
+   var chart = new google.visualization.BarChart(document.getElementById('chart_div2'));
    chart.draw(data, options);
-   var chart2 = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
+   var chart2 = new google.visualization.ColumnChart(document.getElementById('container'));
    chart2.draw(view, options2);
 }
 google.charts.setOnLoadCallback(drawChart);
