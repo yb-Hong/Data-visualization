@@ -3,7 +3,7 @@
 <title>21500804_홍유빈_BarChart</title>
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
    <script type="text/javascript">
-     google.charts.load('current', {packages: ['corechart']});     
+     google.charts.load('current', {packages: ['corechart', 'bar']});     
    </script>
 </head>
 
@@ -30,7 +30,8 @@ function drawChart() {
             fontSize: 30,
             fontName: 'Verdana'
           },
-      isStacked:true,
+      colors: ['silver', 'gray', 'Gold', 'brown', 'black'],
+      isStacked: true,
 hAxis: {
             title: '점포 수',
             titleTextStyle: {
@@ -53,7 +54,8 @@ baseline: 0,
             minValue: 0,
             maxValue: 1700
            }	  
-   };  
+   };
+
    var options2 = {
           title: '포항시',
           titleTextStyle: {
@@ -61,7 +63,8 @@ baseline: 0,
             fontSize: 30,
             fontName: 'Verdana'
           },
-          colors: ['silver', 'gray', 'black'],
+          colors: ['silver', 'gray', 'Gold', 'brown', 'black'],
+          isStacked: true,
           vAxis: {
             title: '점포 수',
             titleTextStyle: {
