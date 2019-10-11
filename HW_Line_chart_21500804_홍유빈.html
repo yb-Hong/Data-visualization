@@ -7,13 +7,13 @@
       function drawLineColors() {
         // data type I
         var data1 = google.visualization.arrayToDataTable([
-           ['Year', 'Korea', {type: 'string', role: 'annotation'}, 'China', 'Japan', {type: 'string', role: 'annotation'}, 'USA'],
-          ['2013',  851,   851,                                 181, 1288,   1288,                                 214],
-          ['2014',  894,   894,                                 285, 965,   965,                                 198],
-          ['2015',  1104,    1104,                                  223, 592,    592,                                  168],
-          ['2016',  1224,   1224,                                 306, 479,   479,                                 336],
-          ['2017',  1352,   1352,                                 74, 553,   553,                                 326],
-          ['2018',  1308,   1308,                                 66,866,   866,                                 312],
+           ['Year', 'Korea', {type: 'string', role: 'annotation'}, 'China'],
+          ['2013',  851,   851,                                 181],
+          ['2014',  894,   894,                                 285],
+          ['2015',  1104,    1104,                                  223],
+          ['2016',  1224,   1224,                                 306],
+          ['2017',  1352,   1352,                                 74],
+          ['2018',  1308,   1308,                                 66],
         ]);
         data1 = new google.visualization.DataView(data1);
         // add a new column right (column for annotation) to the fourth column (using the source of column 3)
