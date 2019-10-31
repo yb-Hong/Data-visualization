@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://yb-Hong.github.io/jquery-csv.js"></script>
+
+
+
+    <script type="text/javascript">
+
+      google.charts.load('current', {
+
+        packages: ['corechart', 'line']
+
+      });
+
+      google.charts.setOnLoadCallback(readFile); // (1) when the javascript is read, readFile function is launched first.
+
+
+
+
+
+      // (2) file is read, and the data is saved in arrayData
+
+      // arrayData variable is sent to the function called 'draw'
+
+      function readFile() {
+
+        filename = "https://yb-Hong.github.io/data.csv";
+
+        $.get(filename, function(csvString) {
+
+          // read a .csv file and save the data in arrayData variable
+
+          var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
+
+          // send arrayData to 'draw' function
+
+          draw(arrayData)
+
+        });
+
+      };
+
+
+
+      function draw(arrayData) {
+
+        // (3) convert arrayData into DataTable form
+
+        // then, the remaining process is same to the previous chart drawing assignments.
+
+        var data = new google.visualization.arrayToDataTable(arrayData);
+
+
+
+        var options = {
+
+          title: 'Online shopping trends by kind of product',
+
+          titleTextStyle: {
+
+            color: 'black',
+
+            fontSize: 40,
+
+            fontName: 'Arial'
+          },
+legend: {
+  position: 'labeled'
+},
+slices: {
+0: {color: 'silver' ,offset: 0.2},
+4: {color: 'black', offset: 0.2},
+7: {color: 'gold', offset: 0.3},
+},
+       };
+ 
+    
+        
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+
+        //var chart2 = new google.visualization.LineChart(document.getElementById('donutchart2'));
+
+        //chart2.draw(data2, options2);
+      }
+
+    </script>
+
+  </head>
+
+  <body>
+
+    <div id="introduction" style="max-width: 800px; font-family: Verdana, Dotum; margin: auto; padding-bottom: 30px">
+
+      <h1>Online shopping trends by kind of product in 2019 1/2</h1>
+      <h2>'The data is excluded Cosmetic value to explore clearly other data. because Cosmetic value is unrivaledly higher than other groups (85% of entire).' </h2>
+      <p>date: 2019-11-01</p>
+      <p>name: 홍유빈 (21500804)</p>
+      <p>Introduction: Online shopping trends of Korea product by foreign country .</p>
+      <p>Data: Online shopping trends data by country and kind of product are given by (KOSIS)Korean Statistical Information Service. I processed data for clear visualization.
+http://kosis.kr/statHtml/statHtml.do?orgId=101&tblId=DT_1KE10081&vw_cd=MT_ZTITLE&list_id=JF&seqNo=&lang_mode=ko&language=kor&obj_var_id=&itm_id=&conn_path=MT_ZTITLE</p>
+      <p>Source code of this page: https://github.com/yb-Hong/Data-visualization/blob/master/HW_Line_chart_21500804_홍유빈.html<p>
+    </div>
+
+    <div id="donutchart" style="max-width: 1200px; margin: auto; width: 1200px; height: 500px;"></div>
+
+    //<div id="donutchart2" style="max-width: 1200px; margin: auto; width: 1200px; height: 500px;"></div>
+
+    <div style="max-width: 800px; margin: auto; margin-top: 50px; width: 800px">
+
+    </div>
+
+
+
+  </body>
+
+</html>
