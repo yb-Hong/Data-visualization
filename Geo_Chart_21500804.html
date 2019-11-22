@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="jquery-csv.js"></script>
+	<script src="https://yb-Hong.github.io/jquery-csv.js"></script>
+    
+    <script type="text/javascript">
+      google.charts.load('current', {
+        'packages':['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyDKIWZFhMKTjsYYRQR7gW1PsunXFPqD1vY'
+      });
+      google.charts.setOnLoadCallback(readFile);
+      
+      function readFile() {
+        filename = "https://yb-Hong.github.io/geo_data.csv";
+        $.get(filename, function(csvString) {
+          // read a .csv file and save the data in arrayData variable
+          var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
+          // send arrayData to 'draw' function
+          drawRegionsMap(arrayData)
+        });
+      };
+      function drawRegionsMap(arrayData) {
+        var data = google.visualization.arrayToDataTable(arrayData);
+        var options = {
+          region: '142',
+          sizeAxis: { minValue: 0, maxValue: 1000 },
+          colorAxis: {colors: ['red', 'blue']}
+        };
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+          <h1>Online shopping trends by kind of product in 2019 1/2</h1>
+      <p>date: 2019-11-22</p>
+      <p>name: 홍유빈 (21500804)</p>
+      <p>Introduction: Online shopping trends of Korea product by foreign country .</p>
+      <p>Data: Online shopping trends data by country and kind of product are given by (KOSIS)Korean Statistical Information Service.
+http://kosis.kr/statHtml/statHtml.do?orgId=101&tblId=DT_1KE10081&vw_cd=MT_ZTITLE&list_id=JF&seqNo=&lang_mode=ko&language=kor&obj_var_id=&itm_id=&conn_path=MT_ZTITLE</p>
+      <p>Source code of this page: https://github.com/yb-Hong/Data-visualization/blob/master/HW_Line_chart_21500804_홍유빈.html<p>
+    <div id="regions_div" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
